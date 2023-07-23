@@ -22,7 +22,8 @@ const RegisterView = () => {
         name: form.elements.name.value,
         email: form.elements.email.value,
         password: form.elements.password.value,
-      })
+      }),
+      alert('Congrats, you have successfully registered')
     );
     form.reset();
   };
@@ -30,7 +31,6 @@ const RegisterView = () => {
   return (
     <RegisterContainer>
       <Title>Registration</Title>
-
       <Form onSubmit={handleSubmit} autoComplete="off">
         <Label>
           Username
@@ -42,7 +42,6 @@ const RegisterView = () => {
             required
           />
         </Label>
-
         <Label>
           Email
           <Input
@@ -53,13 +52,12 @@ const RegisterView = () => {
             required
           />
         </Label>
-
         <Label>
           Password
           <Input type="password" name="password" />
         </Label>
-
         <Button type="submit">Register</Button>
+
         <Text>
           Already have an account?
           <span>

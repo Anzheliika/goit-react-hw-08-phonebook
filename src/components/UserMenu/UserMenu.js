@@ -1,27 +1,22 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useAuth } from 'hooks/useAuth';
 import { logOut } from 'redux/auth/auth-operations';
-import {
-  selectIsLoggedIn,
-  selectUserName,
-} from 'redux/auth/auth-selectors';
-import { UserName } from './UserMenu.styled';
-import avatar from './avatar.png';
+import defaultPhoto from '../../images/unicorn.svg';
+import { Button, UserContainer, UserName } from './UserMenu.styled';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
-  const name = useSelector(selectUserName);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const { user } = useAuth();
 
+  console.log('User:', user);
 
   return (
-    isLoggedIn && (
-      <div>
-        <img src={avatar} alt="" width="32" />
-        <UserName>Welcome, {name}</UserName>
-        <button type="button" onClick={() => dispatch(logOut())}>
-          Log Out
-        </button>
-      </div>
-    )
+    <UserContainer>
+      <img src={defaultPhoto} alt="" width="32" />
+      <UserName>Welcome, {user.name}</UserName>
+      <Button type="button" onClick={() => dispatch(logOut())}>
+        Log out
+      </Button>
+    </UserContainer>
   );
 };

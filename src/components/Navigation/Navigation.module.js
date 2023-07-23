@@ -16,3 +16,8 @@ export const StyledLink = styled(NavLink)`
     color: #d5e6f4;
   }
 `;
+
+export const Nav = styled.nav`
+  display: flex;
+  gap: 30px;
+`;

@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { logIn } from 'redux/auth/auth-operations';
 import { NavLink } from 'react-router-dom';
+import { logIn } from 'redux/auth/auth-operations';
 import {
   Button,
   Form,
@@ -16,7 +16,6 @@ const LoginView = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-
     const form = e.currentTarget;
     dispatch(
       logIn({
@@ -29,9 +28,8 @@ const LoginView = () => {
 
   return (
     <LoginContainer>
-      <Form autoComplete="off" onSubmit={handleSubmit}>
-        <Title>Log in</Title>
-
+      <Title>Log in</Title>
+      <Form onSubmit={handleSubmit} autoComplete="off">
         <Label>
           Email
           <Input
@@ -42,7 +40,6 @@ const LoginView = () => {
             required
           />
         </Label>
-
         <Label>
           Password
           <Input
@@ -53,7 +50,6 @@ const LoginView = () => {
             required
           />
         </Label>
-
         <Button type="submit">Log in</Button>
 
         <Text>
@@ -68,3 +64,4 @@ const LoginView = () => {
 };
 
 export default LoginView;
+

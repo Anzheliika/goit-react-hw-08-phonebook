@@ -1,10 +1,10 @@
 import { Label, Form, Input, Button } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/conatcts/conatcts-operations';
-import { selectContacts } from 'redux/conatcts/contacts-selectors';
+import { addContact } from 'redux/contacts/contacts-operations';
+import { selectContacts } from 'redux/contacts/contacts-selectors';
 import { toast } from 'react-hot-toast';
 
-function ContactForm({ toggle }) {
+function ContactForm() {
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
@@ -17,12 +17,11 @@ function ContactForm({ toggle }) {
     const isInContacts = contacts.some(el => el.name === name);
 
     if (isInContacts) {
-      toast(`${name} is already in contacts, try another one`);
+      toast(`${name} is already in contacts!`);
 
       return;
     }
     dispatch(addContact({ name, number }));
-    toggle();
     form.reset();
   };
 

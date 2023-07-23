@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 export const Form = styled.form`
   display: flex;
@@ -27,21 +27,4 @@ export const Input = styled.input`
   border: solid 1px #000;
   border-radius: 10px;
   margin-top: 10px;
-`;
-
-export const Button = styled.button`
-      border-radius: 5px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    background-color: #ff10a2;
-    color: #000;
-    width: 130px;
-    margin: 0 auto;
-
-    transition: background-color 0.3s linear;
-    
-  &:hover{
-  background-color: #F6A1E7;
 `;

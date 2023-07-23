@@ -1,37 +1,25 @@
-import { nanoid } from 'nanoid';
-import PropTypes from 'prop-types';
-import Contact from 'components/Contact/Contact';
-import { useSelector } from 'react-redux';
-import { selectVisibleContacts } from 'redux/conatcts/contacts-selectors';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { fetchContacts } from 'redux/conatcts/conatcts-operations';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteContact } from 'redux/contacts/contacts-operations';
+import { getVisibleContacts } from 'redux/contacts/contacts-selectors';
+import { Button, Contact, List, Name } from './ContactList.module';
 
-const ContactsList = () => {
+const ContactList = () => {
+  const contacts = useSelector(getVisibleContacts);
   const dispatch = useDispatch();
-  const visibleContacts = useSelector(selectVisibleContacts);
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
 
   return (
-    <ul>
-      {visibleContacts.map(({ id, name, number }) => {
-        return <Contact key={nanoid()} id={id} name={name} number={number} />;
-      })}
-    </ul>
+    <List>
+      {contacts.map(({ name, number, id }) => (
+        <Contact key={id}>
+          <Name>{name + ': ' + number}</Name>
+          <Button type="button" onClick={() => dispatch(deleteContact(id))}>
+            Delete
+          </Button>
+        </Contact>
+      ))}
+    </List>
   );
 };
 
-ContactsList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ),
-};
-
-export default ContactsList;
+export default ContactList;
